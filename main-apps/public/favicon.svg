@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="earthGrad" cx="42%" cy="38%" r="58%">
+      <stop offset="0%" stop-color="#1a6bb5"/>
+      <stop offset="55%" stop-color="#0d4a8a"/>
+      <stop offset="100%" stop-color="#071f3d"/>
+    </radialGradient>
+    <linearGradient id="orbitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.18"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0d1526"/>
+      <stop offset="100%" stop-color="#040810"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="64" height="64" fill="url(#bgGrad)" rx="10"/>
+
+  <!-- Stars -->
+  <circle cx="8"  cy="9"  r="0.7" fill="#ffffff" opacity="0.55"/>
+  <circle cx="55" cy="12" r="0.5" fill="#ffffff" opacity="0.45"/>
+  <circle cx="14" cy="52" r="0.6" fill="#ffffff" opacity="0.4"/>
+  <circle cx="58" cy="48" r="0.7" fill="#ffffff" opacity="0.5"/>
+  <circle cx="5"  cy="38" r="0.5" fill="#00e5ff" opacity="0.6"/>
+  <circle cx="60" cy="28" r="0.6" fill="#7c3aed" opacity="0.55"/>
+  <circle cx="47" cy="5"  r="0.5" fill="#ffffff" opacity="0.4"/>
+
+  <!-- Shield outline -->
+  <path d="M32 7 L47 13 L47 29 Q47 42 32 51 Q17 42 17 29 L17 13 Z"
+        fill="url(#shieldGrad)"
+        stroke="url(#orbitGrad)"
+        stroke-width="1.2"
+        opacity="0.85"/>
+
+  <!-- Earth globe -->
+  <circle cx="32" cy="30" r="12" fill="url(#earthGrad)"/>
+  <!-- Continent outlines (simplified) -->
+  <ellipse cx="28" cy="27" rx="4" ry="5.5" fill="#2d8a4a" opacity="0.75" transform="rotate(-12 28 27)"/>
+  <ellipse cx="37" cy="26" rx="3" ry="4" fill="#2d8a4a" opacity="0.7" transform="rotate(8 37 26)"/>
+  <ellipse cx="33" cy="34" rx="3.5" ry="2.5" fill="#2d8a4a" opacity="0.65"/>
+  <!-- Ocean glint -->
+  <ellipse cx="26" cy="24" rx="2.5" ry="1.2" fill="#6dd5fa" opacity="0.2" transform="rotate(-20 26 24)"/>
+
+  <!-- Orbit ring (ellipse around Earth) -->
+  <ellipse cx="32" cy="30" rx="19" ry="8"
+           fill="none"
+           stroke="url(#orbitGrad)"
+           stroke-width="1.6"
+           stroke-dasharray="5 2.5"
+           opacity="0.9"
+           filter="url(#glow)"/>
+
+  <!-- Satellite dot on orbit -->
+  <circle cx="51" cy="30" r="2.4" fill="#00e5ff" filter="url(#glow)" opacity="0.95"/>
+  <!-- Satellite solar panels (tiny) -->
+  <rect x="49.5" y="27.8" width="1.0" height="4.4" fill="#00e5ff" opacity="0.6" rx="0.3"/>
+  <rect x="51.5" y="27.8" width="1.0" height="4.4" fill="#00e5ff" opacity="0.6" rx="0.3"/>
+
+  <!-- Shield inner glow line -->
+  <path d="M32 12 L44 17 L44 29 Q44 39 32 47" 
+        fill="none" stroke="#00e5ff" stroke-width="0.4" opacity="0.35"/>
+</svg>

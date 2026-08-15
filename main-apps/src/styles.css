@@ -1,0 +1,317 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * OrbitalGuardian AI — "Voxel Mission Control" design system.
+ * Dark-only operator console. Blocky bevels, hard offset shadows,
+ * neon accents used only to carry meaning.
+ */
+
+@theme inline {
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 4px;
+  --radius-2xl: 6px;
+  --radius-3xl: 6px;
+  --radius-4xl: 8px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-panel: var(--panel);
+  --color-panel-raised: var(--panel-raised);
+  --color-bevel: var(--bevel);
+  --color-grid: var(--grid);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-safe: var(--safe);
+  --color-safe-foreground: var(--safe-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+
+  --font-hud: "Orbitron", "IBM Plex Sans", sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-pixel: "Press Start 2P", "IBM Plex Mono", monospace;
+
+  --shadow-block: 4px 4px 0 0 var(--shadow-hard);
+  --shadow-block-lg: 6px 6px 0 0 var(--shadow-hard);
+  --shadow-block-sm: 2px 2px 0 0 var(--shadow-hard);
+
+  --ease-step: cubic-bezier(0.2, 0.9, 0.2, 1);
+
+  --animate-slide-in-top: slide-in-top 0.22s var(--ease-step);
+  --animate-block-in: block-in 0.2s var(--ease-step);
+  --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
+  --animate-scan: scan 3.5s linear infinite;
+  --animate-hud-in: hud-in 0.5s var(--ease-step) both;
+  --animate-bar-grow: bar-grow 0.32s var(--ease-step) both;
+  --animate-shimmer: shimmer 1.4s ease-in-out infinite;
+
+}
+
+:root {
+  --radius: 4px;
+
+  --background: oklch(0.14 0.045 275);
+  --foreground: oklch(0.95 0.01 250);
+
+  --card: oklch(0.2 0.045 272);
+  --card-foreground: oklch(0.95 0.01 250);
+  --popover: oklch(0.22 0.045 272);
+  --popover-foreground: oklch(0.95 0.01 250);
+
+  --panel: oklch(0.19 0.042 272);
+  --panel-raised: oklch(0.245 0.048 272);
+  --bevel: oklch(0.36 0.05 268);
+  --grid: oklch(0.28 0.045 272);
+  --shadow-hard: oklch(0.08 0.03 275 / 0.85);
+
+  --primary: oklch(0.79 0.14 200);
+  --primary-foreground: oklch(0.15 0.05 250);
+
+  --secondary: oklch(0.26 0.045 272);
+  --secondary-foreground: oklch(0.93 0.01 250);
+
+  --muted: oklch(0.24 0.04 272);
+  --muted-foreground: oklch(0.68 0.03 260);
+
+  --accent: oklch(0.3 0.06 260);
+  --accent-foreground: oklch(0.95 0.01 250);
+
+  --warning: oklch(0.78 0.16 72);
+  --warning-foreground: oklch(0.18 0.05 60);
+  --safe: oklch(0.84 0.18 149);
+  --safe-foreground: oklch(0.18 0.05 150);
+  --danger: oklch(0.64 0.22 26);
+  --danger-foreground: oklch(0.98 0.01 250);
+
+  --destructive: oklch(0.64 0.22 26);
+  --destructive-foreground: oklch(0.98 0.01 250);
+
+  --border: oklch(0.32 0.05 270);
+  --input: oklch(0.28 0.045 272);
+  --ring: oklch(0.79 0.14 200);
+}
+
+@keyframes slide-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes block-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 currentColor;
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 4px color-mix(in oklab, currentColor 25%, transparent);
+  }
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(900%);
+  }
+}
+
+@keyframes hud-in {
+  from {
+    opacity: 0;
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    opacity: 0;
+    transform: scaleY(0.2);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Subtle tactile lift — 1px, no glow. */
+@utility block-hover {
+  transition:
+    transform 0.14s var(--ease-step),
+    border-color 0.14s var(--ease-step),
+    box-shadow 0.14s var(--ease-step);
+
+  &:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in oklab, var(--primary) 40%, var(--border));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+
+/* Beveled "brick" surface: hard outline, lighter top edge, hard offset shadow. */
+@utility block-surface {
+  background-color: var(--panel);
+  border: 1px solid var(--border);
+  border-top-color: var(--bevel);
+  box-shadow:
+    inset 0 1px 0 0 color-mix(in oklab, var(--bevel) 55%, transparent),
+    var(--shadow-block);
+}
+
+@utility block-surface-flat {
+  background-color: var(--panel);
+  border: 1px solid var(--border);
+  border-top-color: var(--bevel);
+  box-shadow: inset 0 1px 0 0 color-mix(in oklab, var(--bevel) 45%, transparent);
+}
+
+/* Stepped pixel corners — cheaper than SVG, reads as voxel. */
+@utility block-notch {
+  clip-path: polygon(
+    6px 0,
+    calc(100% - 6px) 0,
+    100% 6px,
+    100% calc(100% - 6px),
+    calc(100% - 6px) 100%,
+    6px 100%,
+    0 calc(100% - 6px),
+    0 6px
+  );
+}
+
+@utility hud-label {
+  font-family: var(--font-hud);
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@utility tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@utility starfield {
+  background-color: #05060f;
+  background-image:
+    radial-gradient(circle at 20% 12%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 45%),
+    radial-gradient(circle at 82% 78%, color-mix(in oklab, var(--warning) 8%, transparent), transparent 50%),
+    linear-gradient(180deg, #05060f 0%, #0b0f2a 100%);
+}
+
+@utility grid-backdrop {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--grid) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--grid) 55%, transparent) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-hud);
+    letter-spacing: 0.02em;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--panel);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--bevel);
+    border: 2px solid var(--panel);
+  }
+}

@@ -1,0 +1,20 @@
+# Core Backend API
+fastapi>=0.104.1
+uvicorn>=0.24.0.post1
+
+# Firebase Integration
+firebase-admin>=6.2.0
+
+# Data manipulation
+pandas>=2.1.3
+numpy>=1.26.2
+
+# Machine Learning
+scikit-learn>=1.3.2
+lightgbm>=4.1.0
+
+# Explainable AI
+shap>=0.43.0
+
+# Extras (if any data processing scripts are used)
+requests>=2.31.0
