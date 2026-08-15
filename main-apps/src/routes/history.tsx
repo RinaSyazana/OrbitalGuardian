@@ -146,17 +146,6 @@ function HistoryPage() {
                       className="h-[300px] w-full border border-border"
                     />
                     <div className="absolute bottom-3 left-3">
-                      <BlockyButton 
-                        size="sm" 
-                        variant="primary"
-                        onClick={() => {
-                          toast.info(`Initializing replay for ${m.satellite}...`, {
-                            description: "Loading telemetry and SHAP arrays into Voxel Engine",
-                          });
-                        }}
-                      >
-                        <Play className="h-3.5 w-3.5" /> Replay mission
-                      </BlockyButton>
                     </div>
                   </div>
                   <div className="space-y-3">

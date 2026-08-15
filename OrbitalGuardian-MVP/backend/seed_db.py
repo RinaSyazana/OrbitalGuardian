@@ -63,12 +63,12 @@ SAT_EVENTS = {
         "tcaUtc": "14:47:12 UTC", "missDistanceM": 214, "relativeVelocityKms": 14.8,
         "altitudeDeltaKm": 5, "inclinationDeltaDeg": 4.6, "uncertainty": 569,
         "shap": [
-            {"label": "Miss distance", "value": 0.38},
-            {"label": "Relative velocity", "value": 0.29},
-            {"label": "Altitude delta", "value": 0.14},
-            {"label": "Debris size", "value": 0.09},
-            {"label": "KP index", "value": 0.06},
-            {"label": "Inclination delta", "value": 0.04}
+            {"label": "Miss distance", "value": "38%", "contribution": 0.38, "direction": "increases"},
+            {"label": "Relative velocity", "value": "29%", "contribution": 0.29, "direction": "increases"},
+            {"label": "Altitude delta", "value": "14%", "contribution": 0.14, "direction": "decreases"},
+            {"label": "Debris size", "value": "9%", "contribution": 0.09, "direction": "increases"},
+            {"label": "KP index", "value": "6%", "contribution": 0.06, "direction": "increases"},
+            {"label": "Inclination delta", "value": "4%", "contribution": 0.04, "direction": "decreases"}
         ],
         "narrative": "Collision risk is 92% because the predicted closest approach of 214 m is critically below the 500 m safety threshold. Relative velocity of 14.8 km/s leaves a narrow time window for avoidance. Immediate maneuver is recommended.",
         "action": "Raise Orbit +12 km", "detail": "Prograde burn to increase apogee and clear the conjunction corridor.",
@@ -79,12 +79,12 @@ SAT_EVENTS = {
         "tcaUtc": "16:04:31 UTC", "missDistanceM": 1100, "relativeVelocityKms": 11.2,
         "altitudeDeltaKm": 12, "inclinationDeltaDeg": 0.2, "uncertainty": 890,
         "shap": [
-            {"label": "Miss distance", "value": 0.31},
-            {"label": "Covariance overlap", "value": 0.26},
-            {"label": "Relative velocity", "value": 0.19},
-            {"label": "Altitude delta", "value": 0.13},
-            {"label": "KP index", "value": 0.07},
-            {"label": "Debris age", "value": 0.04}
+            {"label": "Miss distance", "value": "31%", "contribution": 0.31, "direction": "increases"},
+            {"label": "Covariance overlap", "value": "26%", "contribution": 0.26, "direction": "increases"},
+            {"label": "Relative velocity", "value": "19%", "contribution": 0.19, "direction": "decreases"},
+            {"label": "Altitude delta", "value": "13%", "contribution": 0.13, "direction": "decreases"},
+            {"label": "KP index", "value": "7%", "contribution": 0.07, "direction": "increases"},
+            {"label": "Debris age", "value": "4%", "contribution": 0.04, "direction": "decreases"}
         ],
         "narrative": "Risk is moderate at 46% — the miss distance of 1.1 km is within the screening threshold but the covariance ellipses overlap significantly, inflating positional uncertainty. Monitoring is recommended until the next radar pass reduces covariance.",
         "action": "Monitor — no burn", "detail": "Risk below 50% commit threshold. Continue passive monitoring with updated state vector.",
@@ -95,12 +95,12 @@ SAT_EVENTS = {
         "tcaUtc": "17:22:05 UTC", "missDistanceM": 1840, "relativeVelocityKms": 12.1,
         "altitudeDeltaKm": 15, "inclinationDeltaDeg": 0.1, "uncertainty": 720,
         "shap": [
-            {"label": "Miss distance", "value": 0.27},
-            {"label": "Relative velocity", "value": 0.23},
-            {"label": "Debris density", "value": 0.19},
-            {"label": "Altitude delta", "value": 0.16},
-            {"label": "KP index", "value": 0.09},
-            {"label": "Inclination delta", "value": 0.06}
+            {"label": "Miss distance", "value": "27%", "contribution": 0.27, "direction": "decreases"},
+            {"label": "Relative velocity", "value": "23%", "contribution": 0.23, "direction": "increases"},
+            {"label": "Debris density", "value": "19%", "contribution": 0.19, "direction": "increases"},
+            {"label": "Altitude delta", "value": "16%", "contribution": 0.16, "direction": "decreases"},
+            {"label": "KP index", "value": "9%", "contribution": 0.09, "direction": "increases"},
+            {"label": "Inclination delta", "value": "6%", "contribution": 0.06, "direction": "decreases"}
         ],
         "narrative": "Risk is at 31% — well below the action threshold. The large miss distance of 1.84 km provides adequate clearance under current atmospheric drag models. No maneuver is required; the spacecraft is in a degraded health state so propellant conservation is a priority.",
         "action": "Continue monitoring", "detail": "Below 40% threshold. Schedule next telemetry pass at 17:10 UTC for updated state vector.",
@@ -111,11 +111,11 @@ SAT_EVENTS = {
         "tcaUtc": "19:44:00 UTC", "missDistanceM": 8200, "relativeVelocityKms": 4.1,
         "altitudeDeltaKm": 80, "inclinationDeltaDeg": 12.1, "uncertainty": 310,
         "shap": [
-            {"label": "Miss distance", "value": 0.44},
-            {"label": "Altitude delta", "value": 0.28},
-            {"label": "Relative velocity", "value": 0.14},
-            {"label": "Inclination delta", "value": 0.09},
-            {"label": "Debris size", "value": 0.05}
+            {"label": "Miss distance", "value": "44%", "contribution": 0.44, "direction": "decreases"},
+            {"label": "Altitude delta", "value": "28%", "contribution": 0.28, "direction": "decreases"},
+            {"label": "Relative velocity", "value": "14%", "contribution": 0.14, "direction": "decreases"},
+            {"label": "Inclination delta", "value": "9%", "contribution": 0.09, "direction": "decreases"},
+            {"label": "Debris size", "value": "5%", "contribution": 0.05, "direction": "increases"}
         ],
         "narrative": "Risk is very low at 8%. The MEO orbit at 8,062 km provides a large altitude separation from the screened debris fragment. No maneuver is warranted at this probability level.",
         "action": "No action required", "detail": "Risk 8% — well below operational threshold of 40%.",
@@ -126,10 +126,10 @@ SAT_EVENTS = {
         "tcaUtc": "22:00:00 UTC", "missDistanceM": 45000, "relativeVelocityKms": 1.2,
         "altitudeDeltaKm": 300, "inclinationDeltaDeg": 50.0, "uncertainty": 120,
         "shap": [
-            {"label": "Miss distance", "value": 0.56},
-            {"label": "Altitude delta", "value": 0.31},
-            {"label": "Relative velocity", "value": 0.08},
-            {"label": "Inclination delta", "value": 0.05}
+            {"label": "Miss distance", "value": "56%", "contribution": 0.56, "direction": "decreases"},
+            {"label": "Altitude delta", "value": "31%", "contribution": 0.31, "direction": "decreases"},
+            {"label": "Relative velocity", "value": "8%", "contribution": 0.08, "direction": "decreases"},
+            {"label": "Inclination delta", "value": "5%", "contribution": 0.05, "direction": "decreases"}
         ],
         "narrative": "Risk is negligible at 4%. GEO orbit at 35,786 km is well above the main debris belt. Miss distance of 45 km at closest approach poses no threat. No operational action required.",
         "action": "No action required", "detail": "GEO altitude eliminates conjunction risk from LEO debris catalogue.",
@@ -140,11 +140,11 @@ SAT_EVENTS = {
         "tcaUtc": "15:12:44 UTC", "missDistanceM": 380, "relativeVelocityKms": 15.1,
         "altitudeDeltaKm": 8, "inclinationDeltaDeg": 2.3, "uncertainty": 440,
         "shap": [
-            {"label": "Miss distance", "value": 0.36},
-            {"label": "Attitude fault", "value": 0.27},
-            {"label": "Relative velocity", "value": 0.18},
-            {"label": "Altitude delta", "value": 0.11},
-            {"label": "KP index", "value": 0.08}
+            {"label": "Miss distance", "value": "36%", "contribution": 0.36, "direction": "increases"},
+            {"label": "Attitude fault", "value": "27%", "contribution": 0.27, "direction": "increases"},
+            {"label": "Relative velocity", "value": "18%", "contribution": 0.18, "direction": "increases"},
+            {"label": "Altitude delta", "value": "11%", "contribution": 0.11, "direction": "decreases"},
+            {"label": "KP index", "value": "8%", "contribution": 0.08, "direction": "increases"}
         ],
         "narrative": "Risk elevated to 68% due to a combination of close approach distance (380 m) and an active reaction wheel fault that limits the satellite's maneuvering authority. Immediate avoidance burn is strongly recommended before the window closes.",
         "action": "Lower Orbit -8 km", "detail": "Retrograde burn to drop below the debris track. Attitude fault limits Δv — minimum burn recommended.",
@@ -155,11 +155,11 @@ SAT_EVENTS = {
         "tcaUtc": "18:33:17 UTC", "missDistanceM": 2600, "relativeVelocityKms": 9.8,
         "altitudeDeltaKm": 10, "inclinationDeltaDeg": 0.3, "uncertainty": 650,
         "shap": [
-            {"label": "Miss distance", "value": 0.33},
-            {"label": "Relative velocity", "value": 0.28},
-            {"label": "Altitude delta", "value": 0.18},
-            {"label": "Debris density", "value": 0.12},
-            {"label": "KP index", "value": 0.09}
+            {"label": "Miss distance", "value": "33%", "contribution": 0.33, "direction": "decreases"},
+            {"label": "Relative velocity", "value": "28%", "contribution": 0.28, "direction": "increases"},
+            {"label": "Altitude delta", "value": "18%", "contribution": 0.18, "direction": "decreases"},
+            {"label": "Debris density", "value": "12%", "contribution": 0.12, "direction": "increases"},
+            {"label": "KP index", "value": "9%", "contribution": 0.09, "direction": "increases"}
         ],
         "narrative": "Risk is low at 22%. The SSO orbit shows a 2.6 km miss distance with moderate relative velocity. Current trajectory is acceptable, but the satellite transits a high-debris-density band near 600 km altitude.",
         "action": "Continue monitoring", "detail": "Risk below 40% threshold. Next screening pass at 17:50 UTC.",
@@ -170,10 +170,10 @@ SAT_EVENTS = {
         "tcaUtc": "20:15:02 UTC", "missDistanceM": 6100, "relativeVelocityKms": 3.2,
         "altitudeDeltaKm": 55, "inclinationDeltaDeg": 5.8, "uncertainty": 280,
         "shap": [
-            {"label": "Miss distance", "value": 0.48},
-            {"label": "Altitude delta", "value": 0.29},
-            {"label": "Relative velocity", "value": 0.13},
-            {"label": "Inclination delta", "value": 0.10}
+            {"label": "Miss distance", "value": "48%", "contribution": 0.48, "direction": "decreases"},
+            {"label": "Altitude delta", "value": "29%", "contribution": 0.29, "direction": "decreases"},
+            {"label": "Relative velocity", "value": "13%", "contribution": 0.13, "direction": "decreases"},
+            {"label": "Inclination delta", "value": "10%", "contribution": 0.10, "direction": "decreases"}
         ],
         "narrative": "Risk is low at 11%. MEO altitude of 20,180 km places this satellite above the main debris belt. The 6.1 km miss distance at TCA is well within safe bounds. No operational action required.",
         "action": "No action required", "detail": "MEO altitude and 6.1 km miss distance — no threat.",
