@@ -24,7 +24,7 @@
 **Faculty of Computer and Mathematical Sciences**
 Universiti Teknologi MARA (UiTM), 40450, Shah Alam, Selangor, Malaysia
 
-**Supervised by:** Dr. Azliza Mohd Ali & Dr. Ezzatul Akmal Kamaru-Zaman
+**Supervised by:** Dr. Azliza Mohd Ali
 Faculty of Computer and Mathematical Sciences, UiTM
 
 **Date of Submission:** August 2026
@@ -37,10 +37,9 @@ Faculty of Computer and Mathematical Sciences, UiTM
 
 | Resource | Link |
 |---|---|
-| 🌐 **Live App** | [orbitalguardian.vercel.app](https://orbitalguardian.vercel.app/) |
+| 🌐 **Live App** | [orbitalguardian.vercel.app](https://orbital-guardian-weld.vercel.app/) |
 | 🎬 **Demo Video** | [Watch on Google Drive](#) |
 | 💻 **Codebase (Repository)** | [github.com/RinaSyazana/OrbitalGuardian](https://github.com/RinaSyazana/OrbitalGuardian) |
-| 📄 **Project Report** | `IBM_Submission/Report_OrbitalGuardian.pdf` |
 | 🛠️ **Setup Instructions** | See [Getting Started](#-getting-started) section below |
 
 > **Judges**: The live app is accessible at the Vercel link above. The full source code is available in the GitHub repository.
