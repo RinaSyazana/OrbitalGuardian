@@ -1,7 +1,7 @@
 # UI_UX_SPEC.md — OrbitalGuardian AI
 
 > **Frontend Interface Specification — Page-by-Page Component & Interaction Reference**
-> Version: 1.0 · Framework: React 19 + TanStack Router + TailwindCSS 4
+> Version: 1.1 · Framework: React 19 + TanStack Router + TailwindCSS 4
 
 ---
 

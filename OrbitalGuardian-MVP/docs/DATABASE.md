@@ -1,7 +1,7 @@
 # DATABASE.md — OrbitalGuardian AI
 
 > **Data Architecture & Schema Reference**
-> Version: 1.0 · Primary Store: Google Cloud Firestore (NoSQL)
+> Version: 1.1 · Primary Store: IBM Cloudant (with Firebase WebSocket Bridge)
 
 ---
 

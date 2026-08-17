@@ -1,7 +1,7 @@
 # AI_MODEL.md — OrbitalGuardian AI
 
 > **AI Model Architecture, Pipeline & Inference Specification**
-> Version: 1.0 · Production Model: LightGBM · XAI: SHAP TreeExplainer
+> Version: 1.1 · Production Model: LightGBM · XAI: SHAP TreeExplainer · LLM: IBM Granite
 
 ---
 
