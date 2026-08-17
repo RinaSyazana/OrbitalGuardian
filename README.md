@@ -88,9 +88,9 @@ OrbitalGuardian is designed around that gap: **from prediction → explanation �
 
 ## 🎯 Problem Statement
 
-Active collision avoidance is already a routine space-operations task. ESA notes that a typical Low Earth Orbit spacecraft can receive **hundreds of close-encounter alerts per week**, with automatic filtering reducing these to a much smaller set of actionable events that still require expert analysis. citeturn854262search0
+Active collision avoidance is already a routine space-operations task. ESA notes that a typical Low Earth Orbit spacecraft can receive **hundreds of close-encounter alerts per week**, with automatic filtering reducing these to a much smaller set of actionable events that still require expert analysis. 
 
-The original ESA Collision Avoidance Challenge framed the machine-learning problem as predicting the final collision-risk estimate from sequences of Conjunction Data Messages (CDMs). citeturn854262search0turn854262search3
+The original ESA Collision Avoidance Challenge framed the machine-learning problem as predicting the final collision-risk estimate from sequences of Conjunction Data Messages (CDMs). 
 
 ### The gap OrbitalGuardian targets
 
@@ -129,7 +129,7 @@ Inspect historical alerts, SHAP evidence, confidence levels and maneuver outcome
 
 > **Raise Orbit +12 km** → estimated residual risk **4%** → estimated propellant **2.1 kg** → required **ΔV 6.4 m/s**.
 
-The recommendation is **not an autonomous command**. The architecture explicitly keeps the operator in the loop: AI generates evidence and a recommendation, while the human decides whether to approve or reject the maneuver. fileciteturn0file2L10-L20
+The recommendation is **not an autonomous command**. The architecture explicitly keeps the operator in the loop: AI generates evidence and a recommendation, while the human decides whether to approve or reject the maneuver.
 
 ---
 
@@ -179,13 +179,13 @@ OrbitalGuardian uses a layered AI approach rather than a single model.
                 └────────────────────┘
 ```
 
-The architecture documentation describes a hybrid monolith-as-microservice pattern for the MVP, with decoupled interface boundaries that can be scaled independently in a production deployment. fileciteturn0file0L8-L19
+The architecture documentation describes a hybrid monolith-as-microservice pattern for the MVP, with decoupled interface boundaries that can be scaled independently in a production deployment. 
 
 ---
 
 ## 🧠 1. Collision-Risk Prediction — LightGBM
 
-The production AI model is a **Gradient-Boosted Decision Tree classifier using LightGBM**. The task is binary classification: estimate the probability of collision and map that probability into a human-readable risk level. fileciteturn0file2L8-L20
+The production AI model is a **Gradient-Boosted Decision Tree classifier using LightGBM**. The task is binary classification: estimate the probability of collision and map that probability into a human-readable risk level. 
 
 ### Model inputs
 
@@ -203,7 +203,7 @@ The documented feature pipeline contains **18 raw features**, covering:
 - Orbit regime and debris-density zone
 - Historical conjunction count
 
-After categorical expansion, the feature representation becomes **25 model features**. fileciteturn0file2L77-L100
+After categorical expansion, the feature representation becomes **25 model features**. 
 
 ### Reported model performance
 
@@ -216,7 +216,7 @@ After categorical expansion, the feature representation becomes **25 model featu
 | **F1 — HIGH risk** | **0.925** | 0.875 |
 | **Inference time** | **42 ms incl. SHAP** | 180 ms |
 
-These figures are taken directly from the project's model specification. fileciteturn0file2L146-L155
+These figures are taken directly from the project's model specification. 
 
 > **Why this matters:** for a safety-oriented screening workflow, high-risk recall is especially important because missing a genuinely dangerous conjunction can be more consequential than flagging an extra event for human review.
 
@@ -226,7 +226,7 @@ These figures are taken directly from the project's model specification. file
 
 OrbitalGuardian does not stop at `P(collision)`.
 
-For every inference, **SHAP TreeExplainer** ranks the most influential features and identifies whether each factor pushes the prediction **toward higher or lower risk**. The implementation retains the top five factors and stores both their numeric contribution and a plain-language explanation. fileciteturn0file2L306-L318
+For every inference, **SHAP TreeExplainer** ranks the most influential features and identifies whether each factor pushes the prediction **toward higher or lower risk**. The implementation retains the top five factors and stores both their numeric contribution and a plain-language explanation. 
 
 Example evidence trail:
 
@@ -248,9 +248,9 @@ This creates an important audit path:
 
 SHAP is excellent for attribution, but raw feature contributions are not how operators normally communicate during an operational review.
 
-The project therefore introduces an IBM Granite/LangChain generative-AI layer to convert model evidence and telemetry context into concise operator-facing narratives. The architecture documents IBM Granite through `watsonx.ai` with LangChain integration for SHAP-grounded narrative generation. fileciteturn0file0L68-L75
+The project therefore introduces an IBM Granite/LangChain generative-AI layer to convert model evidence and telemetry context into concise operator-facing narratives. The architecture documents IBM Granite through `watsonx.ai` with LangChain integration for SHAP-grounded narrative generation. 
 
-The inference specification also documents a template-based narrative post-processing path, providing a deterministic fallback for rendering the final explanation. fileciteturn0file2L294-L322
+The inference specification also documents a template-based narrative post-processing path, providing a deterministic fallback for rendering the final explanation. 
 
 ### Design principle
 
@@ -274,7 +274,7 @@ Example rules documented in the architecture:
 | Risk < 30% | **No action required** |
 | Confidence < 80% | **Immediate Human Review** |
 
-This separation is deliberate: the predictive model answers **“how risky?”**, SHAP answers **“why?”**, and the deterministic expert system answers **“what action should be evaluated?”**. fileciteturn0file0L101-L117
+This separation is deliberate: the predictive model answers **“how risky?”**, SHAP answers **“why?”**, and the deterministic expert system answers **“what action should be evaluated?”**. 
 
 ---
 
@@ -314,7 +314,7 @@ Maneuver Sandbox
 Mission History / Audit Trail
 ```
 
-The frontend stack documented in the architecture includes React, TanStack Router, CesiumJS, Recharts and Tailwind CSS, while Firebase listeners provide the MVP's live UI synchronization. fileciteturn0file0L54-L78
+The frontend stack documented in the architecture includes React, TanStack Router, CesiumJS, Recharts and Tailwind CSS, while Firebase listeners provide the MVP's live UI synchronization. 
 
 ---
 
@@ -336,11 +336,11 @@ React / CesiumJS
       ◄──────────── Firebase onSnapshot ◄────────────┘
 ```
 
-The documented system flow shows the analysis page loading the current Firestore state, triggering a synchronous prediction through FastAPI, calculating SHAP factors and recommendation rules, writing the completed event, and pushing the update back to the UI through Firestore. fileciteturn0file0L203-L241
+The documented system flow shows the analysis page loading the current Firestore state, triggering a synchronous prediction through FastAPI, calculating SHAP factors and recommendation rules, writing the completed event, and pushing the update back to the UI through Firestore. 
 
 ### MVP vs. production direction
 
-The current MVP uses synchronous inference triggered by the frontend. Production architecture plans introduce scheduled screening, queue-based processing and worker pools for fleet-scale screening. fileciteturn0file0L272-L296
+The current MVP uses synchronous inference triggered by the frontend. Production architecture plans introduce scheduled screening, queue-based processing and worker pools for fleet-scale screening. 
 
 ---
 
@@ -356,9 +356,9 @@ Data provenance is a critical part of a space-safety project. OrbitalGuardian do
 
 🔗 **[Collision Avoidance Challenge Dataset — Zenodo](https://zenodo.org/records/4463683)**
 
-The dataset is the official dataset used in ESA's Collision Avoidance Challenge. It contains anonymised **Conjunction Data Messages (CDMs) collected from 2015–2019** and includes data for modelling the evolution of collision risk across conjunction events. citeturn854262search7turn854262search3
+The dataset is the official dataset used in ESA's Collision Avoidance Challenge. It contains anonymised **Conjunction Data Messages (CDMs) collected from 2015–2019** and includes data for modelling the evolution of collision risk across conjunction events.
 
-The Zenodo record also states that each row represents one CDM, with multiple CDMs forming time-series observations for individual close-approach events. citeturn854262search7
+The Zenodo record also states that each row represents one CDM, with multiple CDMs forming time-series observations for individual close-approach events. 
 
 ## Additional documented sources
 
@@ -368,9 +368,9 @@ The Zenodo record also states that each row represents one CDM, with multiple CD
 | **CelesTrak SOCRATES Plus** | Current conjunction screening context, TCA, miss distance and relative speed | [SOCRATES Plus](https://celestrak.org/SOCRATES/) |
 | **ESA Collision Avoidance Challenge** | Problem definition and operational context | [ESA Kelvins Challenge](https://kelvins.esa.int/collision-avoidance-challenge/) |
 
-CelesTrak provides GP orbital data in formats including TLE, JSON and CSV, while SOCRATES Plus publishes conjunction search results with fields such as TCA, minimum range and relative speed. citeturn211784search0turn211784search1
+CelesTrak provides GP orbital data in formats including TLE, JSON and CSV, while SOCRATES Plus publishes conjunction search results with fields such as TCA, minimum range and relative speed. 
 
-> **Note:** The project's internal model specification also lists a `Space Debris Orbits 2026` CSV source. No public URL for that project-specific file is documented in the supplied technical specification, so it is not represented here as an externally verified download link. fileciteturn0file2L31-L39
+> **Note:** The project's internal model specification also lists a `Space Debris Orbits 2026` CSV source. No public URL for that project-specific file is documented in the supplied technical specification, so it is not represented here as an externally verified download link. 
 
 ---
 
@@ -395,7 +395,7 @@ Estimated ΔV               6.4 m/s
 Expected residual risk     4%
 ```
 
-The full example is documented in `AI_MODEL.md`, including the SHAP evidence and recommendation payload. fileciteturn0file2L215-L278
+The full example is documented in `AI_MODEL.md`, including the SHAP evidence and recommendation payload. 
 
 ---
 
@@ -413,7 +413,7 @@ satellites
       debris ──────► events
 ```
 
-The documented schema stores not only probability and confidence, but also SHAP factors, narrative evidence, recommendation details, fuel estimates, delta-V, maneuver windows and post-action history. fileciteturn0file1L20-L103 fileciteturn0file1L156-L189
+The documented schema stores not only probability and confidence, but also SHAP factors, narrative evidence, recommendation details, fuel estimates, delta-V, maneuver windows and post-action history. 
 
 This creates a more complete operational record than a single prediction table.
 
@@ -433,7 +433,7 @@ This creates a more complete operational record than a single prediction table.
 | 🧾 **Mission History** | Preserves review and maneuver outcomes for traceability |
 | ⚠️ **Low-Confidence Fallbacks** | Escalates uncertain cases to human review rather than forcing an automated decision |
 
-The AI model specification explicitly defines fallback handling for low confidence, backend outages, missing Firestore data and maximum-uncertainty predictions. fileciteturn0file2L327-L367
+The AI model specification explicitly defines fallback handling for low confidence, backend outages, missing Firestore data and maximum-uncertainty predictions. 
 
 ---
 
@@ -464,7 +464,7 @@ OrbitalGuardian is designed as **decision support, not autonomous spacecraft con
 5. **The operator approves or rejects the proposed action.**
 6. **The system maintains an operational history for review.**
 
-The documented security and production architecture further proposes Firebase Authentication, JWT validation, RBAC and managed secrets for a production deployment. fileciteturn0file0L157-L173
+The documented security and production architecture further proposes Firebase Authentication, JWT validation, RBAC and managed secrets for a production deployment. 
 
 ---
 
@@ -546,7 +546,7 @@ The project architecture and technical documents explicitly describe IBM-oriente
 - Docker
 - GitHub Actions
 
-The versions and stack composition above follow the supplied project architecture specification. fileciteturn0file0L54-L78
+The versions and stack composition above follow the supplied project architecture specification.
 
 ---
 
@@ -610,7 +610,7 @@ Open the local Vite URL shown in your terminal.
 >
 > `operator_admin / operator_admin123`
 >
-> **Security note:** these are demonstration credentials only. The production target is Firebase Authentication + JWT + RBAC. fileciteturn0file0L90-L99
+> **Security note:** these are demonstration credentials only. The production target is Firebase Authentication + JWT + RBAC. 
 
 ---
 
