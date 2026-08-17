@@ -34,7 +34,10 @@ a single-tenant, vertically-integrated stack where all components run in process
                             │ Firebase Admin SDK (gRPC)
 ┌───────────────────────────▼─────────────────────────────────────────┐
 │                       DATA TIER                                     │
-│   Google Cloud Firestore  (NoSQL, real-time)                        │
+│   IBM Cloudant (NoSQL JSON, persistent storage)                     │
+│   watsonx.data (Telemetry Data Lake & Analytics)                    │
+│   Firebase Firestore (Used strictly as an ephemeral WebSocket       │
+│                       bridge for MVP real-time UI synchronization)  │
 │   Collections: satellites · debris · events · history · alerts      │
 └─────────────────────────────────────────────────────────────────────┘
 ```
@@ -42,9 +45,9 @@ a single-tenant, vertically-integrated stack where all components run in process
 **Hosting:**
 | Environment | Frontend | Backend | Database |
 |---|---|---|---|
-| Development | `localhost:3000` (Vite HMR) | `localhost:8000` (Uvicorn --reload) | Firestore (cloud, shared project) |
-| Staging | Lovable.dev Preview URL | Railway / Render free tier | Firestore (same project, stage namespace) |
-| Production | Vercel Edge (CDN) | Cloud Run (auto-scale, 0→N) | Firestore (prod project, multi-region) |
+| Development | `localhost:3000` (Vite HMR) | `localhost:8000` (Uvicorn --reload) | Cloudant (Local CouchDB) / Firebase |
+| Staging | Lovable.dev Preview URL | Railway / Render free tier | IBM Cloudant (Stage) + Firebase Bridge |
+| Production | Vercel Edge (CDN) | Cloud Run (auto-scale, 0→N) | IBM Cloudant (Prod) + watsonx.data |
 
 ---
 
@@ -66,7 +69,9 @@ a single-tenant, vertically-integrated stack where all components run in process
 | **Baseline Model** | Scikit-learn RandomForest | 1.5.x | Benchmark only, not served |
 | **Explainability** | SHAP | 0.46.x | TreeExplainer, force plots |
 | **Data Processing** | Pandas | 2.2.x | Feature engineering pipeline |
-| **Primary Database** | Google Cloud Firestore | v12.17 SDK | Real-time document DB, NoSQL |
+| **Primary Database** | IBM Cloudant | v3 SDK | NoSQL JSON document store |
+| **Generative AI** | IBM Granite | watsonx.ai | Dynamic SHAP narrative generation via LangChain |
+| **Real-time Bridge** | Firebase Firestore | v12.17 SDK | WebSockets for MVP sandbox (ephemeral) |
 | **Auth Provider** | Firebase Auth (MVP: session) | v12.17 | Service-account in backend |
 | **Cloud Services** | Google Cloud (Firebase) | — | Firestore, Hosting (optional) |
 | **Containerisation** | Docker | 24.x | `Dockerfile` for backend |
@@ -116,10 +121,11 @@ Fallback:   model_confidence < 80                → "Immediate Human Review"
 - Batch-processes all satellites against the debris catalogue every 15 minutes.
 - Writes results to Firestore `events/{sat_id}` — UI picks up via `onSnapshot`.
 
-### 3.6 Storage Layer (Firestore)
+### 3.6 Storage Layer (IBM Cloudant & watsonx.data)
 - **Collections:** `satellites`, `debris`, `events`, `history`, `alerts`, `model_registry`
-- **Real-time delivery:** Firestore SDK pushes document changes to connected clients without polling.
-- **Security rules (production):** Read restricted to authenticated users; write restricted to backend service account.
+- **Persistent Storage:** IBM Cloudant serves as the system of record.
+- **Data Lake:** watsonx.data ingests historical tracking data for batch analysis.
+- **Real-time delivery (MVP):** Firebase Firestore is utilized purely as an ephemeral WebSocket bridge to push updates to connected clients without polling, guaranteeing 60fps performance in the 3D dashboard.
 
 ---
 

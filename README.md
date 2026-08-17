@@ -47,10 +47,13 @@ Unlike traditional orbital tracking systems, OrbitalGuardian AI bridges the gap 
                                    ▼
                       FastAPI Backend API (Python)
                                    │
+                                   ├──────────────► IBM Granite (watsonx.ai)
+                                   │                via LangChain (Narratives)
                                    ▼
-                      Firebase Firestore (NoSQL)
+                    IBM Cloudant (NoSQL Persistent DB)
+                      watsonx.data (Telemetry Lake)
                                    │
-                                   ▼ (Real-time onSnapshot)
+                                   ▼ (Firebase WebSocket Bridge)
                                    │
                      React + TanStack Router Dashboard
                   (Monitoring, Analysis, Sandbox, History)
@@ -105,14 +108,15 @@ OrbitalGuardian/
 ### Backend
 - **Python 3.11+**
 - **FastAPI** + **Uvicorn**
-- **Firebase Admin SDK**
 - **LightGBM** + **SHAP**
+- **LangChain** + **IBM Granite (watsonx.ai)**
+- **IBM Cloudant** + **Firebase Admin SDK**
 
 ### Frontend
 - **React 19** + **TypeScript**
 - **TanStack Router** (File-based routing)
 - **Tailwind CSS v4** + Custom HUD Theme
-- **Firebase Web SDK**
+- **Firebase Web SDK** (Real-time bridge)
 
 ---
 
@@ -152,12 +156,13 @@ Visit `http://localhost:8081` in your browser. (The default operator login is `o
 
 ---
 
-## 📈 IBM Watsonx Alignment
+## 📈 IBM Ecosystem Alignment
 
-This project is built for the **IBM Space Challenge** track. The architecture maps seamlessly to IBM services for production deployment:
-- **watsonx.ai**: Model training, serving, and LLM narrative generation.
-- **watsonx.governance**: Drift scoring, SHAP audit trails, and model fairness.
-- **IBM Cloud Object Storage**: Snapshots of TLE catalogues and CDM archives.
+This project was built using **IBM Bob** (primary AI coding assistant) for the **IBM AI Builders Challenge 2026**. The architecture maps seamlessly to IBM services:
+- **watsonx.ai** & **IBM Granite**: Dynamic generation of collision narratives and operational recommendations via LangChain.
+- **watsonx.data**: Scalable data lake for storing massive TLE orbital catalogs and CDM (Conjunction Data Message) archives.
+- **IBM Cloudant**: Persistent JSON NoSQL document store for satellite telemetry and maneuver history.
+- **watsonx.governance**: (Planned) Drift scoring and model fairness tracking for the LightGBM prediction engine.
 
 ---
 

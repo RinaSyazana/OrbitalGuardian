@@ -18,3 +18,8 @@ shap>=0.43.0
 
 # Extras (if any data processing scripts are used)
 requests>=2.31.0
+
+# IBM Ecosystem (Generative AI)
+langchain>=0.1.0
+langchain-ibm>=0.1.0
+ibm-watsonx-ai>=0.2.0

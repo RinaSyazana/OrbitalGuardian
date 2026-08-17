@@ -11,6 +11,10 @@ if not os.path.exists(key_path):
     print("Error: serviceAccountKey.json not found in backend directory.")
     sys.exit(1)
 
+# Add parent dir to path to import src modules
+sys.path.append(os.path.abspath(os.path.join(current_dir, "..")))
+from src.granite_llm import generate_narrative
+
 cred = credentials.Certificate(key_path)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
@@ -217,7 +221,7 @@ for sat in SATELLITES:
             "screenedPairs": 1842006
         },
         "SHAP_FACTORS": ev["shap"],
-        "SHAP_NARRATIVE": ev["narrative"],
+        "SHAP_NARRATIVE": generate_narrative(ev),
         "RECOMMENDATION": {
             "action": ev["action"],
             "detail": ev["detail"],
@@ -228,7 +232,7 @@ for sat in SATELLITES:
             "windowClosesIn": "-",
             "deltaV": ev["deltaV"],
             "confidence": ev["confidence"],
-            "rationale": ev["narrative"]
+            "rationale": generate_narrative(ev)
         }
     })
 
