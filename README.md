@@ -210,10 +210,10 @@ The MVP combines a REST prediction path with Firestore event streaming to ensure
 | 🌐 **Live Application** | [orbitalguardian.vercel.app](https://orbital-guardian-weld.vercel.app/) |
 | 💻 **GitHub Repository** | [github.com/RinaSyazana/OrbitalGuardian](https://github.com/RinaSyazana/OrbitalGuardian) |
 | 📦 **Dataset** | [Official ESA Collision Avoidance Challenge Dataset](https://zenodo.org/records/4463683) |
-| 🧠 **AI Model Specification** | [`docs/AI_MODEL.md`](docs/AI_MODEL.md) |
-| 🏗️ **System Architecture Specification** | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
-| 🗃️ **Database Specification** | [`docs/DATABASE.md`](docs/DATABASE.md) |
-| 📱 **UI/UX Specification** | [`docs/UI_UX_SPEC.md`](docs/UI_UX_SPEC.md) |
+| 🧠 **AI Model Specification** | [`OrbitalGuardian-MVP/docs/AI_MODEL.md`](docs/AI_MODEL.md) |
+| 🏗️ **System Architecture Specification** | [`OrbitalGuardian-MVP/docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
+| 🗃️ **Database Specification** | [`OrbitalGuardian-MVP/docs/DATABASE.md`](docs/DATABASE.md) |
+| 📱 **UI/UX Specification** | [`OrbitalGuardian-MVP/docs/UI_UX_SPEC.md`](docs/UI_UX_SPEC.md) |
 
 ---
 
